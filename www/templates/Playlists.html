@@ -1,0 +1,20 @@
+<ion-view view-title="{{data.title}}">
+  <ion-content>
+  	<div class="list">
+  		<a collection-repeat="story in data.stories" class="item item-thumbnail-left" href="#">
+  			<img style="width:120px;height:71px;" ng-src="{{thumbnail(story.primary.photo.url)}}" />
+  			<h2>{{story.primary.headline}}</h2>
+  			<!-- <p>{{story.primary.summary}}</p> -->
+  		</a>
+    </div>
+
+
+    
+    <!-- <ion-list>
+      <ion-item collection-repeat="story in data.stories" href="#/app/playlists/{{playlist.id}}">
+        {{story.primary.headline}}
+        {{story.primary.summary}}
+      </ion-item>
+    </ion-list> -->
+  </ion-content>
+</ion-view>

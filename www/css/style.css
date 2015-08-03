@@ -1,0 +1,14 @@
+/* Empty. Add your own CSS if you like */
+
+.item p, .item h2{
+	white-space: normal;
+}
+
+.item-thumbnail-left > img:first-child{
+	max-width: 120px;
+	max-height: 71px;
+}
+
+.item-thumbnail-left {
+	padding-left: 145px;
+}
