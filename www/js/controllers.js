@@ -51,6 +51,7 @@ angular.module('IonSky.controllers', [])
   $scope.data = DataService.getCategory('top-stories');
 
   $scope.thumbnail = function(url){
+    console.log(url);
     return url.replace('{width}x{height}', '186x110');
   };
 

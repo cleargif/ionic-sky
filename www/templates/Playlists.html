@@ -2,7 +2,7 @@
   <ion-content>
   	<div class="list">
   		<a collection-repeat="story in data.stories" class="item item-thumbnail-left" href="#">
-  			<img style="width:120px;height:71px;" ng-src="{{thumbnail(story.primary.photo.url)}}" />
+  			<img style="width:120px;height:71px;" ng-src="{{::story.photo.sizes.sm}}" />
   			<h2>{{story.primary.headline}}</h2>
   			<!-- <p>{{story.primary.summary}}</p> -->
   		</a>

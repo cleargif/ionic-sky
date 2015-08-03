@@ -5,9 +5,10 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
 angular.module('IonSky', ['ionic', 'IonSky.controllers', 'IonSky.services'])
-  // .constant('ApiEndpoint', {
-  //   url: 'http://localhost:8100/'
-  // })
+  .constant('ApiEndpoint', {
+    //url: 'http://localhost:8100',
+    url: 'http://feeds.skynews.com'
+  })
 
 .run(function ($ionicPlatform) {
   $ionicPlatform.ready(function () {
