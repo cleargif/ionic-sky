@@ -6,8 +6,8 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('IonSky', ['ionic', 'IonSky.controllers', 'IonSky.services'])
   .constant('ApiEndpoint', {
-    //url: 'http://localhost:8100',
-    url: 'http://feeds.skynews.com'
+    url: 'https://ionskyapi.herokuapp.com'
+      //url: 'http://feeds.skynews.com'
   })
 
 .run(function ($ionicPlatform) {
@@ -38,9 +38,8 @@ angular.module('IonSky', ['ionic', 'IonSky.controllers', 'IonSky.services'])
       init: function ($q, DataService) {
 
         return $q.all([
-            DataService.getDefault(), 
-            DataService.getData({ url: '/feeds/mobile/home.json', route: 'top-stories'})
-            ]);
+          DataService.getDefault()
+        ]);
       }
     }
   })
@@ -64,6 +63,15 @@ angular.module('IonSky', ['ionic', 'IonSky.controllers', 'IonSky.services'])
     })
     .state('app.playlists', {
       url: '/playlists/:catroute',
+      resolve: {
+        init: function ($q, DataService, $stateParams) {
+          return $q.all([
+            DataService.getData({
+              route: $stateParams.catroute
+            })
+          ]);
+        }
+      },
       views: {
         'menuContent': {
           templateUrl: 'templates/playlists.html',

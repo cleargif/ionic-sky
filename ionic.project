@@ -1,10 +1,4 @@
 {
-  "name": "myApp",
-  "app_id": "0ca1f4a6",
-  "proxies": [
-    {
-      "path": "/feeds/mobile",
-      "proxyUrl": "http://feeds.skynews.com/feeds/mobile"
-    }
-  ]
+  "name": "IonSkyProto",
+  "app_id": "0ca1f4a6"
 }

@@ -11,7 +11,7 @@ angular.module('IonSky.controllers', [])
   
   DataService.getDefault().then(function(){
     $scope.menuItems = DataService.getMenuItems();
-    console.log(DataService);
+    console.log($scope.menuItems);
   });
 
   // Form data for the login modal
@@ -46,17 +46,9 @@ angular.module('IonSky.controllers', [])
   };
 })
 
-.controller('PlaylistsCtrl', function ($scope, DataService) {
-  
-  $scope.data = DataService.getCategory('top-stories');
-
-  $scope.thumbnail = function(url){
-    console.log(url);
-    return url.replace('{width}x{height}', '186x110');
-  };
-
-  console.log($scope.data);
-
+.controller('PlaylistsCtrl', function ($scope, DataService, $stateParams) {
+  console.log('ddd');
+  $scope.data = DataService.getCategory($stateParams.catroute);
   
 })
 
