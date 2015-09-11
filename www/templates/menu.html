@@ -18,8 +18,8 @@
     </ion-header-bar>
     <ion-content>
       <ion-list>
-        <ion-item menu-close ng-repeat="item in menuItems" href="#/app/playlists/{{item.route}}">
-          {{item.title}}
+        <ion-item menu-close ng-repeat="item in menuItems" ui-sref='app.cat({cat:item.route})'>
+          {{item.title}} {{item.url}}
         </ion-item>
       </ion-list>
     </ion-content>

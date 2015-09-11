@@ -4,10 +4,11 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('IonSky', ['ionic', 'IonSky.controllers', 'IonSky.services'])
+angular.module('IonSky', ['ionic', 'IonSky.controllers', 'IonSky.services', 'underscore'])
   .constant('ApiEndpoint', {
-    url: 'https://ionskyapi.herokuapp.com'
-      //url: 'http://feeds.skynews.com'
+    url: 'https://ionskyapi.herokuapp.com/feeds/mobile/'
+    //url: 'http://feeds.skynews.com'
+    // url: 'http://localhost:5000/feeds/mobile/'
   })
 
 .run(function ($ionicPlatform) {
@@ -35,8 +36,8 @@ angular.module('IonSky', ['ionic', 'IonSky.controllers', 'IonSky.services'])
     templateUrl: 'templates/menu.html',
     controller: 'AppCtrl',
     resolve: {
-      init: function ($q, DataService) {
-
+      appinit: function ($q, DataService) {
+        console.log('app resolve');
         return $q.all([
           DataService.getDefault()
         ]);
@@ -53,32 +54,25 @@ angular.module('IonSky', ['ionic', 'IonSky.controllers', 'IonSky.services'])
     }
   })
 
-  .state('app.browse', {
-      url: '/browse',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/browse.html'
-        }
+
+  .state('app.cat', {
+    url: '/category/:cat',
+    resolve: {
+      init: function (appinit, $q, DataService, $stateParams) {
+        return $q.all([
+          DataService.getData({
+            route: $stateParams.cat
+          })
+        ]);
       }
-    })
-    .state('app.playlists', {
-      url: '/playlists/:catroute',
-      resolve: {
-        init: function ($q, DataService, $stateParams) {
-          return $q.all([
-            DataService.getData({
-              route: $stateParams.catroute
-            })
-          ]);
-        }
-      },
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/playlists.html',
-          controller: 'PlaylistsCtrl'
-        }
+    },
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/playlists.html',
+        controller: 'PlaylistsCtrl'
       }
-    });
+    }
+  });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/playlists/top-stories');
+  $urlRouterProvider.otherwise('/app/search');
 });
