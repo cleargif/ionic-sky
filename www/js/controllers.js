@@ -8,24 +8,27 @@ angular.module('IonSky.controllers', [])
   // listen for the $ionicView.enter event:
   //$scope.$on('$ionicView.enter', function(e) {
   //});
-  
 
   $scope.menuItems = DataService.getMenuItems();
 
-  // Form data for the login modal
-  $scope.loginData = {};
 
 })
 
-.controller('PlaylistsCtrl', function ($scope, DataService, $stateParams) {
-  
-  $scope.data = DataService.getCategory($stateParams.cat);
+.controller('PlaylistsCtrl', function ($scope, DataService, $stateParams, $rootScope) {
 
-  $scope.doRefresh = function () {
-    $scope.data = DataService.getCategory($stateParams.cat);
-    $scope.$broadcast('scroll.refreshComplete');
-  };
-  
+  function loadData(cat) {
+    console.log('show');
+    $rootScope.$emit('loading:show');
+    return DataService.getCategory($stateParams.cat).then(function (data) {
+      $scope.data = data;
+      $rootScope.$emit('loading:hide');
+    });
+  }
+
+  $scope.$on('$ionicView.beforeEnter', function () {
+    loadData($stateParams.cat);
+  });
+
 })
 
 .controller('PlaylistCtrl', function ($scope, $stateParams) {});

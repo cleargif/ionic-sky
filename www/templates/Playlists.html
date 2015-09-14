@@ -1,9 +1,11 @@
-<ion-view view-title="{{data.title}}">
+<ion-view>
+
+  <ion-nav-title>
+    {{data.title}}
+  </ion-nav-title>
+
   <ion-content>
-  <ion-refresher
-    pulling-text="Pull to refresh..."
-    on-refresh="doRefresh()">
-  </ion-refresher>
+  
   	<div class="list">
   		<a collection-repeat="story in data.stories" class="item item-thumbnail-left" ui-sref="app.story()">
   			<img style="width:120px;height:71px;" ng-src="{{::story.photo.sizes.sm}}" />
@@ -12,13 +14,6 @@
   		</a>
     </div>
 
-
-    
-    <!-- <ion-list>
-      <ion-item collection-repeat="story in data.stories" href="#/app/playlists/{{playlist.id}}">
-        {{story.primary.headline}}
-        {{story.primary.summary}}
-      </ion-item>
-    </ion-list> -->
   </ion-content>
+
 </ion-view>

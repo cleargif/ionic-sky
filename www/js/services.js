@@ -17,7 +17,7 @@ angular.module('IonSky.services', [])
             });
         },
         getCategory: function (cat) {
-            return this.response[cat];
+            return $q.when(this.response[cat]);
         }
     };
 
@@ -40,7 +40,7 @@ angular.module('IonSky.services', [])
     service.getData = function (obj) {
         var __ROUTE = obj.route;
         var __URL = ApiEndpoint.url + this.lookupByRoute(__ROUTE).url;
-
+        console.log('get data');
         if (service.response[__ROUTE]) {
             return $q.when(service.response[__ROUTE]);
         }
